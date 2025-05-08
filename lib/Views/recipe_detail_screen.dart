@@ -6,6 +6,7 @@ import 'package:flutter_complete_app/Utils/constants.dart';
 import 'package:flutter_complete_app/Widget/my_icon_button.dart';
 import 'package:flutter_complete_app/Widget/quantity_increment_decrement.dart';
 import 'package:flutter_complete_app/Views/rating_popup.dart';
+import 'package:flutter_complete_app/Views/cooking_screen.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 
@@ -346,21 +347,38 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     );
   }
 
-  FloatingActionButton startCookingAndFavoriteButton(
-      FavoriteProvider provider) {
+  Widget startCookingAndFavoriteButton(FavoriteProvider provider) {
     return FloatingActionButton.extended(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CookingScreen(
+              documentSnapshot: widget.documentSnapshot,
+            ),
+          ),
+        );
+      },
       label: Row(
         children: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: kprimaryColor,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 100, vertical: 13),
-                foregroundColor: Colors.white),
-            onPressed: () {},
+              backgroundColor: kprimaryColor,
+              padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 13),
+              foregroundColor: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CookingScreen(
+                    documentSnapshot: widget.documentSnapshot,
+                  ),
+                ),
+              );
+            },
             child: const Text(
               "Start Cooking",
               style: TextStyle(
