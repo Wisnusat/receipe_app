@@ -37,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
       if (sessionQuery.docs.isNotEmpty) {
         final String userEmail = sessionQuery.docs.first['email'];
-        
+
         // Get user data
         final QuerySnapshot userQuery = await FirebaseFirestore.instance
             .collection('users')
@@ -89,7 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
       if (sessionQuery.docs.isNotEmpty) {
         final String userEmail = sessionQuery.docs.first['email'];
-        
+
         // Update user data
         final QuerySnapshot userQuery = await FirebaseFirestore.instance
             .collection('users')
@@ -183,10 +183,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+        //   onPressed: () => Navigator.pop(context),
+        // ),
         title: const Text(
           'Settings',
           style: TextStyle(

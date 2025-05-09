@@ -75,10 +75,10 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                             Navigator.pop(context);
                           }),
                       const Spacer(),
-                      MyIconButton(
-                        icon: Iconsax.notification,
-                        pressed: () {},
-                      )
+                      // MyIconButton(
+                      //   icon: Iconsax.notification,
+                      //   pressed: () {},
+                      // )
                     ],
                   ),
                 ),
@@ -187,7 +187,8 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: kprimaryColor,
-                          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 10),
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {
@@ -197,13 +198,18 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                               recipeTitle: widget.documentSnapshot['name'],
                               onRatingSubmitted: (rating) async {
                                 // Get current values
-                                final currentRate = double.parse(widget.documentSnapshot['rate'].toString());
-                                final currentReviews = int.parse(widget.documentSnapshot['reviews'].toString());
-                                
+                                final currentRate = double.parse(
+                                    widget.documentSnapshot['rate'].toString());
+                                final currentReviews = int.parse(widget
+                                    .documentSnapshot['reviews']
+                                    .toString());
+
                                 // Calculate new average rating
                                 final newReviews = currentReviews + 1;
-                                final newRate = ((currentRate * currentReviews) + rating) / newReviews;
-                                
+                                final newRate =
+                                    ((currentRate * currentReviews) + rating) /
+                                        newReviews;
+
                                 // Update Firestore
                                 await FirebaseFirestore.instance
                                     .collection('recipes')
@@ -212,7 +218,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                                   'rate': newRate.toStringAsFixed(1),
                                   'reviews': newReviews.toString(),
                                 });
-                                
+
                                 // Update local state
                                 setState(() {
                                   widget.documentSnapshot.reference.update({
@@ -366,7 +372,8 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: kprimaryColor,
-              padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 13),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 100, vertical: 13),
               foregroundColor: Colors.white,
             ),
             onPressed: () {
