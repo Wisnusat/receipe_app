@@ -40,28 +40,28 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
   // for category
   final CollectionReference categoriesItems =
       FirebaseFirestore.instance.collection("categories");
-  
+
   // for all items display with search
   Query get fileteredRecipes {
     Query query = FirebaseFirestore.instance.collection("recipes");
-    
+
     // Apply category filter if not "All"
     if (category != "All") {
       query = query.where('category', isEqualTo: category);
     }
-    
+
     // Apply search filter if query exists
     if (_searchQuery.isNotEmpty) {
-      query = query.where('name', isGreaterThanOrEqualTo: _searchQuery)
-                  .where('name', isLessThanOrEqualTo: _searchQuery + '\uf8ff');
+      query = query
+          .where('name', isGreaterThanOrEqualTo: _searchQuery)
+          .where('name', isLessThanOrEqualTo: _searchQuery + '\uf8ff');
     }
-    
+
     return query;
   }
 
-  Query get allRecipes =>
-      FirebaseFirestore.instance.collection("recipes");
-      
+  Query get allRecipes => FirebaseFirestore.instance.collection("recipes");
+
   Query get selectedRecipes =>
       category == "All" && _searchQuery.isEmpty ? allRecipes : fileteredRecipes;
 
@@ -223,11 +223,11 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
             ),
           ),
         ),
-        const Spacer(),
-        MyIconButton(
-          icon: Iconsax.notification,
-          pressed: () {},
-        ),
+        // const Spacer(),
+        // MyIconButton(
+        //   icon: Iconsax.notification,
+        //   pressed: () {},
+        // ),
       ],
     );
   }
